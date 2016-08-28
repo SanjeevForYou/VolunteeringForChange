@@ -15,7 +15,7 @@
     <context:component-scan base-package="vfc.controller"/>
     <mvc:annotation-driven  conversion-service="conversionService" />
     
-   <mvc:resources  location="/resources/"  mapping="/resource/**"/>
+   <mvc:resources  location="/resources/"  mapping="/resources/**"/>
       
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
