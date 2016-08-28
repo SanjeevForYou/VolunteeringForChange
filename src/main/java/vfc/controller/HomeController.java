@@ -19,4 +19,9 @@ public class HomeController {
 	public String logout(){
 		return "home";
 	}
+	
+	@RequestMapping({"/login"})
+	public String signIn(){
+		return "home";
+	}
 }
