@@ -20,9 +20,5 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping({"/login"})
-	public String signIn(){
-		System.out.println("Inside method signIN");
-		return "home";
-	}
+	
 }
