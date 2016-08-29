@@ -12,13 +12,12 @@ public class HomeController {
 	
 	@RequestMapping({"/login"})
 	public String login(){
-		return "home";
+		return "login";
 	}
 	
-	@RequestMapping({"/logout"})
-	public String logout(){
-		return "home";
+	@RequestMapping({"/welcome"})
+	public String welcom(){
+		return "welcome";
 	}
-	
-	
+
 }
