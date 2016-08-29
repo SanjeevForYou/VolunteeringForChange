@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Event {
 	@Id
@@ -28,15 +30,16 @@ public class Event {
 	private byte[] image;
 	private Date uploadDate;
 	private Date updateDate;
+	private Date startDate;
+	private Date endDate;
 	private int noOfSeats;
 	private String location;
 	private int ageCriteria;
+	private int status;
 
 	@ManyToOne(targetEntity = Category.class)
-	@JoinColumn(name="category_id")
+	@JoinColumn(name = "category_id")
 	List<Category> listOfCategory = new ArrayList<>();
-	
-	
 
 	@ManyToMany
 	@JoinTable(name = "interest", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = {
@@ -46,17 +49,45 @@ public class Event {
 	public Event() {
 	}
 
-	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public List<Category> getListOfCategory() {
+		return listOfCategory;
+	}
+
+	public void setListOfCategory(List<Category> listOfCategory) {
+		this.listOfCategory = listOfCategory;
+	}
 
 	public List<User> getListOfUsers() {
 		return listOfUsers;
 	}
 
-
 	public void setListOfUsers(List<User> listOfUsers) {
 		this.listOfUsers = listOfUsers;
 	}
-
 
 	public int getEventId() {
 		return eventId;
@@ -65,7 +96,6 @@ public class Event {
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
-
 
 	public String getTitle() {
 		return title;
