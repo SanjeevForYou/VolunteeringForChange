@@ -2,12 +2,21 @@ package vfc.service;
 
 import java.util.List;
 
-import vfc.domain.Event;
+import org.springframework.stereotype.Service;
 
+
+import vfc.domain.Event;
+@Service
 public interface EventManagementService {
 	
-	public Event saveEvent(Event event);
+	public void saveEvent(Event event);
 	public List<Event> getAllEvents();
-	public void deleteEvent(int eventid);
+	public void deleteEvent(long eventId);
+	public Event findEventById(long eventId);
+	public void updateEvent(Event event);
+	
+	
+	
+	
 
 }

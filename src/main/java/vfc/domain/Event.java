@@ -36,10 +36,16 @@ public class Event {
 	private String location;
 	private int ageCriteria;
 	private int status;
+	
+	@ManyToOne
+	@JoinColumn(name="category_id")
+	private Category category;
 
-	@ManyToOne(targetEntity = Category.class)
-	@JoinColumn(name = "category_id")
-	List<Category> listOfCategory = new ArrayList<>();
+//	@ManyToOne(targetEntity = Category.class)
+//	@JoinColumn(name = "category_id")
+//	List<Category> listOfCategory = new ArrayList<>();
+
+	
 
 	@ManyToMany
 	@JoinTable(name = "interest", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = {
@@ -73,13 +79,7 @@ public class Event {
 		this.status = status;
 	}
 
-	public List<Category> getListOfCategory() {
-		return listOfCategory;
-	}
-
-	public void setListOfCategory(List<Category> listOfCategory) {
-		this.listOfCategory = listOfCategory;
-	}
+	
 
 	public List<Member> getListOfUsers() {
 		return listOfUsers;
@@ -169,4 +169,11 @@ public class Event {
 		this.ageCriteria = ageCriteria;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 }
