@@ -44,7 +44,7 @@ public class Event {
 	@ManyToMany
 	@JoinTable(name = "interest", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "user_id") })
-	List<User> listOfUsers = new ArrayList<>();
+	List<Member> listOfUsers = new ArrayList<>();
 
 	public Event() {
 	}
@@ -81,11 +81,11 @@ public class Event {
 		this.listOfCategory = listOfCategory;
 	}
 
-	public List<User> getListOfUsers() {
+	public List<Member> getListOfUsers() {
 		return listOfUsers;
 	}
 
-	public void setListOfUsers(List<User> listOfUsers) {
+	public void setListOfUsers(List<Member> listOfUsers) {
 		this.listOfUsers = listOfUsers;
 	}
 

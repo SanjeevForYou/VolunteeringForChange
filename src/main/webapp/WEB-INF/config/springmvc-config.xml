@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
         
     <context:component-scan base-package="vfc.controller"/>
-    <mvc:annotation-driven  conversion-service="conversionService" />
+  <mvc:annotation-driven  validator="validator"/>
     
    <mvc:resources  location="/resources/"  mapping="/resources/**"/>
       
@@ -21,21 +21,34 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-   
-   	<bean id="validator"
-		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+  
+	
+	<mvc:resources  location="/resources/"  mapping="/resources/**"/>
+	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 
-    
-      <bean id="conversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-		<property name="formatters">
-			<set>
-				<!--  <bean class="app04a.formatter.PhoneFormatter"> </bean> -->
-			</set>
-		</property>
+<bean id= "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+   		<property name="basename" value="messages"/> 
+    	<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
+	
+	 <!-- Tiles Configuration Ef -->
+ 
+ <bean id="tilesViewResolver"   class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+        <property name="order" value="-2" />
+ </bean>
 
-    
+ <bean id="tilesConfigurer"
+  class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+  <property name="definitions">
+   <list>
+    <value>/WEB-INF/tiles/definitions/tile-definition.xml</value>
+   </list>
+  </property>
+ </bean>
+ <!-- End Tiles Configuration Ef -->
+	
 </beans>
