@@ -11,4 +11,6 @@ public interface MemberService {
 	public Member findByMemberNumber(int memberId);
   	public void saveFull( Member member); 
   	public Member findMemberByUsername(String username);
+  	
+  	public List<Member> findMembersByEventId(int eventId);
 }

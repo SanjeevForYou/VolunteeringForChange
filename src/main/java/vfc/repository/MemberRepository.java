@@ -1,6 +1,8 @@
 package vfc.repository;
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -16,5 +18,14 @@ import vfc.domain.Member;
 		
 		@Query("select m from MEMBER m join m.credentials c where c.username = :username")
 		public Member findMemberByUsername(@Param("username") String username);
+		
+		
+		@Query("select m from MEMBER m join m.eventMember e where e.event.eventId =:eventId")
+		//@Query("select e.listOfUsers from Event e where e.eventId=:eventId")
+		public List<Member> findMembersByEventId(@Param("eventId") int eventId);
+		
+//		@Query("Select E.listOfUsers from Event E  ")
+//		public List<Member>getMemberEnrolledInEvent(@Param("eventId") long id);
+
  	}
 

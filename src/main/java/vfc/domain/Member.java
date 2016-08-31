@@ -13,33 +13,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity(name = "MEMBER")
+@Entity(name="MEMBER")
 public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID")
+	
 	private int id;
 
 	@NotEmpty
-	@Size(min = 4, max = 20, message = "first name must be there.")
+	@Size(min = 4, max = 20)
 	@Column(name = "FIRSTNAME")
 	private String firstName;
 
 	@NotEmpty
-	@Size(min = 4, max = 20, message="{user.registration.member.lastname.size}")
+	@Size(min = 4, max = 20)
 	@Column(name = "LASTNAME")
 	private String lastName;
 
 	@NotNull
 	@Column(name = "DOB")
+	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 
 	@Column(name = "AGE")
@@ -55,9 +59,28 @@ public class Member {
 	@JoinColumn(name = "USERNAME")
 	private Credentials credentials;
 	
-	//added later
-	@ManyToMany(mappedBy = "listOfUsers")
-	List<Event> listOfEvents = new ArrayList<>();
+//added later
+//	@ManyToMany(mappedBy = "listOfUsers")
+//	List<Event> listOfEvents = new ArrayList<>();
+	@OneToMany(mappedBy="member")
+	List<EventMember> eventMember = new ArrayList();
+
+	
+	public Member() {
+		}
+	
+	
+
+	
+	public List<EventMember> getEventMember() {
+		return eventMember;
+	}
+
+	public void setEventMember(List<EventMember> eventMember) {
+		this.eventMember = eventMember;
+	}
+	
+	
 
 	public int getId() {
 		return id;
@@ -84,7 +107,6 @@ public class Member {
 	}
 
 	public int getAge() {
-		
 		return age;
 	}
 

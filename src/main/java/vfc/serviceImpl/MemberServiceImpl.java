@@ -45,6 +45,14 @@ public class MemberServiceImpl implements MemberService {
 	public Member findMemberByUsername(String username) {
 		return memberRepository.findMemberByUsername(username);
 	}
+
+	
+	@Override
+	public List<Member> findMembersByEventId(int eventId) {
+		List<Member> members = memberRepository.findMembersByEventId(eventId);
+		//System.out.println(members);
+		return members;
+	}
  
 
 }
