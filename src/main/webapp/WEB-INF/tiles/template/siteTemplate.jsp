@@ -5,17 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Voluntaring For Change</title>
 </head>
 <body>
 <center>
 <tiles:insertAttribute name="header"/>
 </center>
-<br><br>
-
 <tiles:insertAttribute name="body"/>
-
-<br><br>
 <center>
 <tiles:insertAttribute name="footer"/>
 </center>

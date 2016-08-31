@@ -16,6 +16,7 @@
 				<p> ${tagline} </p>
 				<p> <security:authorize access="isAuthenticated()">
   					Welcome  <security:authentication property="principal.username" />
+  					<a href="<spring:url  value="/user/profile" />" class="btn btn-danger btn-mini pull-right">View Profile</a>	
   					<a href="<spring:url  value="/doLogout" />" class="btn btn-danger btn-mini pull-right">Logout</a>	
 				</security:authorize>
 
@@ -23,11 +24,8 @@
  
 				  <div class="container">
  				  <security:authorize access="isAnonymous()">
- 				  <!-- WHICH ONE? depends on BASIC form OR CUSTOM -->
-<%--     					<a href="<spring:url value='/spring_security_login' />" class="btn btn-default pull-right"> Login</a>
- --%> 
     					<a href="<spring:url value='/login' />" class="btn btn-default pull-right"> Login</a>
-    					<a href="<spring:url value='/registration' />" class="pull-right"> Register </a>
+    					<a href="<spring:url value='/user/registration' />" class="pull-right"> Register </a>
 
 				</security:authorize>
 		

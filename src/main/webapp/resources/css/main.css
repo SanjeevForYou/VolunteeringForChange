@@ -1,40 +1,148 @@
+#head_down {
+	background-color: white;
+	height: 100px;
+}
+
+#img_head_down {
+	padding: 20px;
+	height: 100px;
+	padding-left: 120px;
+	box-shadow: 5px 5px 5px grey;
+}
+
+
+#logo img {
+	float: left;
+	width: 60px;
+	height: 60px;
+}
+
+.event_box {
+	border: 1px solid gray;
+	background-color: #f5f5ef;
+	padding: 5px 20px;
+	border-radius: 5px;
+	font-family: "Century Gothic";
+}
+
+#navigation_part {
+	height: 50px;
+	background-color: grey;
+	margin-top: 10px;
+}
+
+.main_page {
+	margin: 0px auto;
+	width: 80%;
+	background-color: white;
+	box-shadow: 5px 5px 5px grey;
+	padding: 20px 30px;
+	margin-top: 5%;
+}
+
+.event_page {
+	float: right;
+	width: 70%;
+	padding-left: 10px;
+	border-left: 1px solid grey;
+	border-left-style: dotted;
+	border-opacity: 0.7;
+}
+
+.search_page {
+	float: left;
+	width: 30%;
+}
+
+#img_head_down h2 {
+	float: left;
+	padding-left: 10px;
+	color: #ff6344;
+	font-size: 37px;
+	text-shadow: 2px 2px 5px gray;
+	font-family: "Century Gothic";
+}
+
+.clear {
+	clear: both;
+}
+
+#img_head_down p {
+	font-size: 30px;
+	color: #ff6344;
+}
+
+
+
+#footer {
+	margin: 0 auto;
+	width: 100%;
+	margin-top: 10px;
+}
+
+#head {
+	background-color: #ff6344;
+	height: 7px;
+}
+
+body {
+	background-image: url('../app-images/wallpaper.jpg');
+}
+
+.partition_date_venue{
+	
+}
+
+.date_event{
+	float: right;
+	width: 50%;
+	padding-top: 5px;
+}
+
+.venue_event{
+	float: left;
+	width: 50%;
+	padding-top: 5px;
+}
+
 #global {
-    text-align: left;
-    border: 1px solid #dedede;
-    background: #efefef;
-    width: 560px;
-    padding: 20px;
-    margin: 100px auto;
+	text-align: left;
+	border: 1px solid #dedede;
+	background: #efefef;
+	width: 560px;
+	padding: 20px;
+	margin: 100px auto;
 }
 
 form {
-  font:100% verdana;
-  min-width: 500px;
-  max-width: 600px;
-  width: 560px;
+	font: 100% verdana;
+	min-width: 500px;
+	max-width: 600px;
+	width: 560px;
 }
 
 form fieldset {
-  border-color: #bdbebf;
-  border-width: 3px;
-  margin: 0;
+	border-color: #bdbebf;
+	border-width: 3px;
+	margin: 0;
 }
 
 legend {
-    font-size: 1.3em;
+	font-size: 1.3em;
 }
 
-form label { 
-    width: 250px;
-    display: block;
-    float: left;
-    text-align: right;
-    padding: 2px;
+form label {
+	width: 250px;
+	display: block;
+	float: left;
+	text-align: right;
+	padding: 2px;
 }
 
 #buttons {
-    text-align: right;
+	text-align: right;
 }
+
 #errors, li {
 	color: red;
 }
