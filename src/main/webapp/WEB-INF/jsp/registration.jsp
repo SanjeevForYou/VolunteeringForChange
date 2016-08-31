@@ -5,9 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 <title>Registration</title>
+
+<script>
+$(function(){
+	$("#dateOfBirth").datepicker();
+})(jquery);
+</script>
 </head>
 <body>
 	<section>
@@ -17,58 +26,54 @@
 			</div>
 		</div>
 	</section>
-	<div class="container">
-		<div class="row">
-						<form action="<spring:url value="/registration"></spring:url>" method="post" modelAttribute="userInfo">
+	<div class="container center">
+						<form action="<spring:url value="/user/registration"></spring:url>" method="post" modelAttribute="userInfo">
 							<fieldset>
 								<form:errors path="*" cssStyle="color : red;" /> 
-						       <form:errors path="lastName" cssStyle="color : red;" /> 
+						       <form:errors path="firstName" cssStyle="color : red;" /> 
 								<div class="form-group">
-									<label class="control-label col-lg-4" for="name">First Name</label>
-									<div class="col-lg-8">
-										<input class="form:input-large" placeholder="First Name"
+									<label class="control-label" for="name">First Name</label>
+										<input class="form-control" placeholder="First Name"
 											name='firstName' type="text" />
-									</div>
+							
 								</div>
 					
 								<div class="form-group">
-									<label class="control-label col-lg-4" for="name">Last Name </label>
-									<div class="col-lg-8">
-										<input class="form:input-large" placeholder="Last Name"
+									<label class="control-label" for="name">Last Name </label>
+										<input class="form-control" placeholder="Last Name"
 											name='lastName' type="text" />
-									</div>
 								</div>
 								
 								<div class="form-group">
-									<label class="control-label col-lg-4" for="dateOfBirth">DOB </label>
-									<div class="col-lg-8">
-										<input class="form:input-large" placeholder="Date Of Birth"
-											name='dateOfBirth' type="text" />
-									</div>
+									<label class="control-label" for="dateOfBirth">DOB </label>
+	
+										<input class="form-control" placeholder="mm/dd/yyyy"
+											name="dateOfBirth" id="dateOfBirth" type="text" />
+							
 								</div>
 								<div class="form-group">
-									<label class="control-label col-lg-4" for="name">User
+									<label class="control-label" for="name">User
 										Name</label>
-									<div class="col-lg-8">
-										<input class="form:input-large" placeholder="User Name"
+					
+										<input class="form-control" placeholder="User Name"
 											name='credentials.username' type="text">
-									</div>
+
 								</div>
 								<div class="form-group">
-									<label class="control-label col-lg-4" for="name">Password</label>
-									<div class="col-lg-8">
-										<input class=" form:input-large" placeholder="Password"
+									<label class="control-label" for="name">Password</label>
+			
+										<input class="form-control" placeholder="Password"
 											name='credentials.password' type="password" value="">
-									</div>
+				
 								</div>
 								<div class="form-group">
-									<label class="control-label col-lg-4" for="name">Re
+									<label class="control-label" for="name">Re
 										type password </label>
-									<div class="col-lg-8">
-										<input class=" form:input-large"
+
+										<input class="form-control"
 											placeholder="Re-type password" name='credentials.verifyPassword'
 											type="password" value="">
-									</div>
+			
 								</div>
 <div class="form-group">
 								<input class="btn btn-primary btn-mini" type="submit"
@@ -78,5 +83,5 @@
 									</div> 
 							</fieldset>
 						</form>
-	</div>
+						</div>
 </body>

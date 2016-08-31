@@ -29,12 +29,12 @@ public class Member {
 	private int id;
 
 	@NotEmpty
-	@Size(min = 4, max = 20)
+	@Size(min = 4, max = 20, message = "first name must be there.")
 	@Column(name = "FIRSTNAME")
 	private String firstName;
 
 	@NotEmpty
-	@Size(min = 4, max = 20)
+	@Size(min = 4, max = 20, message="{user.registration.member.lastname.size}")
 	@Column(name = "LASTNAME")
 	private String lastName;
 
@@ -84,6 +84,7 @@ public class Member {
 	}
 
 	public int getAge() {
+		
 		return age;
 	}
 

@@ -12,10 +12,13 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import vfc.validator.Username;
+
 @Entity(name = "USERS")
 public class Credentials {
 
 	@NotEmpty
+	@Username
 	@Id
 	@Column(name = "USERNAME", nullable = false, unique = true)
 	String username;
