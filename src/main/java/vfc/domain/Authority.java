@@ -17,6 +17,14 @@ public class Authority {
 	private String username;
   	@Column(name = "AUTHORITY", nullable = false)
  	private String authority;
+  	
+  	public Authority(){};
+  	
+  	public Authority(String username, String role)
+  	{
+  		this.username = username;
+  		this.authority = role;		
+  	}
  	
 	 public int getId() {
 		return id;
