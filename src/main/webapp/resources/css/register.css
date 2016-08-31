@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+
+.contain h2{
+	font-size: 20px;
+	font-family: "Century Gothic";
+	font-weight: bold;
+	width: 30%;
+	margin:0 auto;
+	
+}
+
+.contain{
+	width: 100%;
+	padding: 30px 0px;
+	background-color: #f5f5ef;
+}
+
+.container{
+	margin: 0 auto;
+	width: 30%;
+	padding: 25px 25px 10px 25px;
+	border: 1px solid gray;
+	margin-bottom: 20px;
+	margin-top: 10px;
+}

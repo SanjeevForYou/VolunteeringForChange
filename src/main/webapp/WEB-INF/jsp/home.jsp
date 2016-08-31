@@ -1,15 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<link rel="stylesheet" type="text/css" href="resources/css/main.css">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Welcome</title>
-</head>
-<body>
-
+ <script>
+	 $(function () {
+	     $(this).vfc_home({
+	         UserModuleID: '1',
+	         rowTotal: '1',
+	         PageLimit:'10',
+	         CategoryID: '2'
+	     });      
+	 });
+ </script>
+ 
 	<div class="a"></div>
 	<div class="main_page">
 		<div class="search_page"></div>
@@ -18,8 +18,8 @@
 
 			<c:forEach var="item" varStatus="status" items="${listOfEvents}">
 				<div class="event_box">
-					<strong>${item.title}</strong><br> ${item.shortDescription} <a
-						href="#" style="text-decoration: underline;">see more>></a>
+					<strong>${item.title}</strong><br> ${item.shortDescription} 
+
 
 					<div class="partition_date_venue">
 						<div class="date_event">
@@ -42,6 +42,8 @@
 							</div>
 						</div>
 						<div class="clear"></div>
+						
+						  <span class="btn btn-primary btn-mini interested" data-eventid="${item.eventId}">Event ${item.eventId} Instrested</span>
 					</div>
 				</div>
 				<br>
@@ -51,5 +53,3 @@
 
 		<div class="clear"></div>
 	</div>
-</body>
-</html>
