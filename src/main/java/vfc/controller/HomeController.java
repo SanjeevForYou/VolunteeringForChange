@@ -1,6 +1,10 @@
 package vfc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,7 +34,29 @@ public class HomeController {
 	
 	@RequestMapping({"/", "/home"})
 	public String home(Model model){
-		model.addAttribute("listOfEvents", eventService.getAllEvents());
+		List<Event> events = eventService.getAllEvents();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    
+	    Member member = memberService.findMemberByUsername(name);
+		
+		for(Event event : events)
+		{
+			if(member != null)
+			{
+				System.out.println(event.getEventId()+" "+member.getId());
+				if(!eventMemberService.isUserEventExist(event.getEventId(), member.getId()))
+				{
+					event.setMark(1);
+				}
+				else
+					event.setMark(0);
+			}
+			else
+				event.setMark(0);
+		}
+		
+		model.addAttribute("listOfEvents", events);
 		return "home";
 	}
 	
@@ -40,11 +66,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/rest/interest/{eventid}")
-	public @ResponseBody EventMember restInterest(@PathVariable("eventid") int eventid){
+	public @ResponseBody ResponseEntity<String> restInterest(@PathVariable("eventid") int eventid){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String name = auth.getName();
-		if(name.isEmpty()||name==null){
-			return null;
+		if(name==null){
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 		EventMember eventMember = new EventMember();
 		Event event = eventService.findEventById(eventid);
@@ -54,6 +80,7 @@ public class HomeController {
 		System.out.println("member name= "+member);
 		eventMember.setMember(member);
 		
-        return eventMemberService.saveEventMember(eventMember);
+        eventMemberService.saveEventMember(eventMember);
+        return new ResponseEntity<String>(HttpStatus.OK);
 	}
 }

@@ -33,10 +33,17 @@
             init: function (config) {
                 
                 $(".interested").on('click', function () {
-                    var value = $(this).attr("data-eventid");
-                	var dta = {"eventid":value};
-                    vfc.MarkMemberInterest(value);
+                	 	var txt;
+                	    var r = confirm("Do you want to confirm Event!");
+                	    if (r == true) {
+                	    	 vfc.config.Busy = $(this).attr("data-eventid");
+                         	//var dta = {"eventid":value};
+                             vfc.MarkMemberInterest(vfc.config.Busy);    
+                	    }
+
                 });
+                
+                
             },
      
             MarkMemberInterest: function(dta)
@@ -45,12 +52,19 @@
                    vfc.config.url = contextRoot + vfc.config.method;
                    vfc.config.data = {};
                    vfc.config.ajaxCallMode = 2;
-                   vfc.ajaxCall(vfc.config);
+                   vfc.ajaxCall();
             },
 
            HandleInterst : function(data)
            {
-        	   
+        	   if(data==null){
+        		   window.location= contextRoot+"/login";
+        	   }
+        	   else{
+        		   $("#" + vfc.config.Busy).removeClass("btn-primary");
+        		   $("#" + vfc.config.Busy).addClass("btn-success");
+        		   alert("changed");
+        	   }
            },
             ajaxSuccess: function (data) {
                 switch (vfc.config.ajaxCallMode) {
@@ -60,12 +74,12 @@
                         vfc.BindvfcList(data);
                         break;
                     case 2:
-                      alert("posted succcesfully");
+                      //alert("posted succcesfully");
                       vfc.HandleInterst(data);
                         break;
                 }
             },
-            ajaxCall: function (config) {
+            ajaxCall: function () {
                 $.ajax({
                     type: vfc.config.type,
                     contentType: vfc.config.contentType,
@@ -83,7 +97,8 @@
                 switch (vfc.config.ajaxCallMode) {
                     case 0:
                         break;
-                    case 1:
+                    case 2:
+                    	// window.location= contextRoot+"/login";
                         break;
                 }
             }

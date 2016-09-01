@@ -36,6 +36,16 @@ public class Event {
 	private Date uploadDate;
 	@Temporal(TemporalType.DATE)
 	private Date updateDate;
+	public int getMark() {
+		return mark;
+	}
+
+
+	public void setMark(int mark) {
+		this.mark = mark;
+	}
+
+
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
@@ -44,7 +54,7 @@ public class Event {
 	private String location;
 	private int ageCriteria;
 	private int status;
-	
+	private int mark;
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private Category category;
