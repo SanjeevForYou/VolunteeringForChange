@@ -49,13 +49,13 @@ public class EventController {
 	}
 	
 	@RequestMapping(value="/delete/{id}")
-	public String deleteEvent(@PathVariable long id){
+	public String deleteEvent(@PathVariable int id){
 		eventManagementService.deleteEvent(id);
 		return "redirect:/admin/event/all";
 	}
 	
 	@RequestMapping(value="/getdetails/{id}")
-	public String getEventById(@PathVariable long id, Model model){
+	public String getEventById(@PathVariable int id, Model model){
 		Event event=eventManagementService.findEventById(id);
 		System.out.println(event);
 		model.addAttribute("event", eventManagementService.findEventById(id));
@@ -63,7 +63,7 @@ public class EventController {
 		
 		}
 	@RequestMapping(value="/edit/{id}")
-	public String editEvent(@PathVariable long id, Model model){
+	public String editEvent(@PathVariable int id, Model model){
 		model.addAttribute("category", categoryManagementService.getAllCategories());
 		model.addAttribute("event",eventManagementService.findEventById(id) );
 		return "addEvents";

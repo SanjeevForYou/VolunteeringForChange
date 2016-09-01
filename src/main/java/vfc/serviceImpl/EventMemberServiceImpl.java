@@ -18,5 +18,10 @@ public class EventMemberServiceImpl implements EventMemberService {
 	public EventMember saveEventMember(EventMember eventMember) {
 		return eventMemberRepo.save(eventMember);
 	}
+	@Override
+	public boolean isUserEventExist(int eventid, int userid) {
+		// TODO Auto-generated method stub
+		return eventMemberRepo.isUserEventExist(eventid,userid).size()==0?true:false;
+	}
 
 }

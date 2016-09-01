@@ -23,7 +23,7 @@
 		<h2><strong>Volunteering For Change</strong></h2>
 		<div class="login_button">
 				<security:authorize access="isAuthenticated()">
-  					Welcome  <security:authentication property="principal.username" />
+  					<span class="welcome_note">Welcome <security:authentication property="principal.username" /> </span>
   					<a href="<spring:url  value="/user/profile" />" class="btn btn-warning">View Profile</a>	
   					<a href="<spring:url  value="/doLogout" />" class="btn btn-info">Logout</a>	
 				</security:authorize>

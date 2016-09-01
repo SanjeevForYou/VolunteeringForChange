@@ -34,7 +34,6 @@ public class UserController {
 	
 	@RequestMapping(value = {"/user/registration"}, method = RequestMethod.POST)
 	public String userRegistration(@Valid @ModelAttribute("userInfo") Member member, BindingResult result, RedirectAttributes redirect){
-		System.out.println("reached");
 		System.out.println(member.getCredentials().getPassword());
 		if(result.hasErrors())
 		return "registration";
@@ -88,6 +87,42 @@ public class UserController {
 	    Member profile = memberService.findMemberByUsername(user);
 	    model.addAttribute("profile", profile);    
 		return "profile";
+	}
+	
+	@RequestMapping(value = {"/user/add"}, method = RequestMethod.GET)
+	public String useAdd(@ModelAttribute("profile") Member member){       
+	    return "admin/addEditUser";
+	}
+	
+	@RequestMapping(value = {"/user/edit/{id}"}, method = RequestMethod.GET)
+	public String useEdit(@PathVariable("id") int id, Model model){    
+	    Member profile = memberService.findByMemberNumber(id);
+	    model.addAttribute("profile", profile);    
+	    return "admin/addEditUser";
+	}
+	
+	@RequestMapping(value = {"	"}, method = RequestMethod.POST)
+	public String userAddEditAdmin(@Valid @ModelAttribute("profile") Member member, BindingResult result, RedirectAttributes redirect){
+		System.out.println(member.getCredentials().getPassword());
+		if(result.hasErrors())
+		return "admin/addEditUser";
+		
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//	    String name = auth.getName(); //get logged in username
+	    
+	    List<Authority> lst = new ArrayList<Authority>();
+	    lst.add(new Authority(member.getCredentials().getUsername(), "ROLE_USER"));
+	    member.getCredentials().setAuthority(lst);
+//	    PasswordRetypeValidator pwdRetypeCheck = new PasswordRetypeValidator();
+//	    pwdRetypeCheck.validate(member.getCredentials(), result);
+
+	    if(result.hasErrors())
+	    	return "admin/addEditUser";
+	    
+	    memberService.save(member);
+
+		redirect.addFlashAttribute("success", "Registered Successfully!!");
+		return "login";
 	}
 
 }

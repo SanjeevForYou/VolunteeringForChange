@@ -1,6 +1,10 @@
 package vfc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import vfc.domain.Event;
 import vfc.domain.EventMember;
+import vfc.domain.Member;
 import vfc.service.EventManagementService;
 import vfc.service.EventMemberService;
 import vfc.service.MemberService;
@@ -28,7 +34,29 @@ public class HomeController {
 	
 	@RequestMapping({"/", "/home"})
 	public String home(Model model){
-		model.addAttribute("listOfEvents", eventService.getAllEvents());
+		List<Event> events = eventService.getAllEvents();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    
+	    Member member = memberService.findMemberByUsername(name);
+		
+		for(Event event : events)
+		{
+			if(member != null)
+			{
+				System.out.println(event.getEventId()+" "+member.getId());
+				if(!eventMemberService.isUserEventExist(event.getEventId(), member.getId()))
+				{
+					event.setMark(1);
+				}
+				else
+					event.setMark(0);
+			}
+			else
+				event.setMark(0);
+		}
+		
+		model.addAttribute("listOfEvents", events);
 		return "home";
 	}
 	
@@ -38,15 +66,21 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/rest/interest/{eventid}")
-	public @ResponseBody EventMember restInterest(@PathVariable("eventid") int eventid){
+	public @ResponseBody ResponseEntity<String> restInterest(@PathVariable("eventid") int eventid){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName();
+		if(name==null){
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
 		EventMember eventMember = new EventMember();
-		eventMember.getEvent().setEventId(eventid);
+		Event event = eventService.findEventById(eventid);
+		eventMember.setEvent(event);
 		
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        
-        eventMember.getMember().setId(memberService.findMemberByUsername(name).getId());
-        eventMember.setApproval(0); //default
-		return eventMemberService.saveEventMember(eventMember);
+		Member member = memberService.findMemberByUsername(name);
+		System.out.println("member name= "+member);
+		eventMember.setMember(member);
+		
+        eventMemberService.saveEventMember(eventMember);
+        return new ResponseEntity<String>(HttpStatus.OK);
 	}
 }

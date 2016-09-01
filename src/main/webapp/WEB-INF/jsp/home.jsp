@@ -42,8 +42,13 @@
 							</div>
 						</div>
 						<div class="clear"></div>
-						
-						  <span class="btn btn-primary btn-mini interested" data-eventid="${item.eventId}">Event ${item.eventId} Instrested</span>
+						<c:if test="${item.mark == 0}">
+						 <span class="btn btn-primary btn-mini interested" id="${item.eventId}" data-eventid="${item.eventId}">Event ${item.eventId} Instrested</span>
+						</c:if>
+						<c:if test="${item.mark == 1}">
+						 <span class="btn btn-success btn-mini interested" id="${item.eventId}" data-eventid="${item.eventId}">Event ${item.eventId} Instrested</span>
+						</c:if>
+						 
 					</div>
 				</div>
 				<br>

@@ -23,12 +23,12 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity(name="MEMBER")
+@Entity(name = "MEMBER")
 public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
+
 	private int id;
 
 	@NotEmpty
@@ -59,28 +59,25 @@ public class Member {
 	@JoinColumn(name = "USERNAME")
 	private Credentials credentials;
 	
-//added later
-//	@ManyToMany(mappedBy = "listOfUsers")
-//	List<Event> listOfEvents = new ArrayList<>();
-	@OneToMany(mappedBy="member")
-	List<EventMember> eventMember = new ArrayList();
+	@OneToMany(mappedBy = "member")
+	private List<EventMember> listOfEventMembers = new ArrayList<>();
 
-	
 	public Member() {
-		}
-	
-	
-
-	
-	public List<EventMember> getEventMember() {
-		return eventMember;
-	}
-
-	public void setEventMember(List<EventMember> eventMember) {
-		this.eventMember = eventMember;
 	}
 	
 	
+
+	public List<EventMember> getListOfEventMembers() {
+		return listOfEventMembers;
+	}
+
+
+
+	public void setListOfEventMembers(List<EventMember> listOfEventMembers) {
+		this.listOfEventMembers = listOfEventMembers;
+	}
+
+
 
 	public int getId() {
 		return id;
