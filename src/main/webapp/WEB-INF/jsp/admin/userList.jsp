@@ -39,7 +39,7 @@
 			</c:forEach>
 
 		</table>
-     <a class="btn btn-primary btn-mini" href='<spring:url value="/user/registration"></spring:url>'>Add New</a>
+     <a class="btn btn-primary btn-mini" href='<spring:url value="/admin/addEditUser"></spring:url>'>Add New</a>
 	</div>
 	</section>
 </body>

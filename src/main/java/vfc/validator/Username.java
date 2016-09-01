@@ -19,7 +19,7 @@ import javax.validation.Payload;
 @Documented
 public @interface Username {
 
-	  String message() default "{vfc.validator.username}";
+	  String message() default "Username does not exist";
 
 	    Class<?>[] groups() default {};
 	    
