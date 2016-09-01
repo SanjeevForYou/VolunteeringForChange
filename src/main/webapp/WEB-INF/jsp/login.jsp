@@ -12,7 +12,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Welcome Kimosabe!! </h1>
+				<h1 style="font-size: 30px; margin:0 auto; text-align: center;">Please Login</h1>
 			</div>
 		</div>
 	</section>

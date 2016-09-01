@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<html>
 
 <footer id="footer"
 	style="border-top: 1px solid black; background-color: #e1eaea;">
@@ -36,3 +32,5 @@
 		</div>
 	</div>
 </footer>
+</body>
+</html>

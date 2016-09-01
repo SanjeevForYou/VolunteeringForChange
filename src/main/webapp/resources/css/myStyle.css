@@ -1,0 +1,42 @@
+@CHARSET "ISO-8859-1";
+.center_div{
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+}
+.form-actions {
+    margin: 0;
+    background-color: transparent;
+    text-align: center;
+}
+.form-horizontal .control-label{
+	text-align: left !important;
+}
+h2.header{
+	    border-bottom: 1px solid #e7e7e7;
+    margin: 45px 0 50px;
+}
+
+.container {
+    width: 100% !important;
+}
+.btn.dropdown-toggle.btn-default {
+    width: 353px;
+}
+.col-sm-2 {
+    width: 27.667% !important;
+}
+.col-sm-4 {
+    width: 44.333% !important;
+}
+
+.col-md-offset-2 {
+    margin-left: 23.667% !important;
+}
+
+.btn-pos {
+    width: 109.667%;
+}
+
+.btngp {
+    margin-left: 28% !important;
+}

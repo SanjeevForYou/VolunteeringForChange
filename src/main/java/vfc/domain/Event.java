@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,9 +30,13 @@ public class Event {
 	private String shortDescription;
 	private String description;
 	private byte[] image;
+	@Temporal(TemporalType.DATE)
 	private Date uploadDate;
+	@Temporal(TemporalType.DATE)
 	private Date updateDate;
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	private int noOfSeats;
 	private String location;
@@ -40,10 +46,15 @@ public class Event {
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private Category category;
+	
+	@OneToMany(mappedBy="event")
+	List<EventMember> eventMember= new ArrayList();
 
 //	@ManyToOne(targetEntity = Category.class)
 //	@JoinColumn(name = "category_id")
 //	List<Category> listOfCategory = new ArrayList<>();
+
+	
 
 	
 
@@ -52,12 +63,14 @@ public class Event {
 			@JoinColumn(name = "user_id") })
 	List<Member> listOfUsers = new ArrayList<>();
 
+	
 	public Event() {
 	}
 
 	public Date getStartDate() {
 		return startDate;
 	}
+	
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
@@ -176,4 +189,13 @@ public class Event {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
+	public List<EventMember> getEventMember() {
+		return eventMember;
+	}
+
+	public void setEventMember(List<EventMember> eventMember) {
+		this.eventMember = eventMember;
+	}
+
 }
