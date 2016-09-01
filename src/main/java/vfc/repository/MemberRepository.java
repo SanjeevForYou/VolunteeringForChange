@@ -20,7 +20,7 @@ import vfc.domain.Member;
 		public Member findMemberByUsername(@Param("username") String username);
 		
 		
-		@Query("select m from MEMBER m join m.eventMember e where e.event.eventId =:eventId")
+		@Query("select m from MEMBER m join m.listOfEventMembers e where e.event.eventId =:eventId")
 		//@Query("select e.listOfUsers from Event e where e.eventId=:eventId")
 		public List<Member> findMembersByEventId(@Param("eventId") int eventId);
 		

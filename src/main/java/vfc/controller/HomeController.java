@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import vfc.domain.Event;
 import vfc.domain.EventMember;
+import vfc.domain.Member;
 import vfc.service.EventManagementService;
 import vfc.service.EventMemberService;
 import vfc.service.MemberService;
@@ -39,14 +41,19 @@ public class HomeController {
 	
 	@RequestMapping("/rest/interest/{eventid}")
 	public @ResponseBody EventMember restInterest(@PathVariable("eventid") int eventid){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName();
+		if(name.isEmpty()||name==null){
+			return null;
+		}
 		EventMember eventMember = new EventMember();
-		eventMember.getEvent().setEventId(eventid);
+		Event event = eventService.findEventById(eventid);
+		eventMember.setEvent(event);
 		
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        
-        eventMember.getMember().setId(memberService.findMemberByUsername(name).getId());
-        eventMember.setApproval(0); //default
-		return eventMemberService.saveEventMember(eventMember);
+		Member member = memberService.findMemberByUsername(name);
+		System.out.println("member name= "+member);
+		eventMember.setMember(member);
+		
+        return eventMemberService.saveEventMember(eventMember);
 	}
 }

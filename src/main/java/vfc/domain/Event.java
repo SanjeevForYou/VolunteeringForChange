@@ -1,12 +1,14 @@
 package vfc.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,25 +49,28 @@ public class Event {
 	@JoinColumn(name="category_id")
 	private Category category;
 	
-	@OneToMany(mappedBy="event")
-	List<EventMember> eventMember= new ArrayList();
-
-//	@ManyToOne(targetEntity = Category.class)
-//	@JoinColumn(name = "category_id")
-//	List<Category> listOfCategory = new ArrayList<>();
-
-	
-
-	
-
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(name = "interest", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "user_id") })
-	List<Member> listOfUsers = new ArrayList<>();
+	List<Member> listOfUsers = new ArrayList<>();*/
+	
+	@OneToMany(mappedBy = "event", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<EventMember> listOfEventMembers = new ArrayList<>();
 
 	
 	public Event() {
 	}
+
+	
+	public List<EventMember> getListOfEventMembers() {
+		return listOfEventMembers;
+	}
+
+
+	public void setListOfEventMembers(List<EventMember> listOfEventMembers) {
+		this.listOfEventMembers = listOfEventMembers;
+	}
+
 
 	public Date getStartDate() {
 		return startDate;
@@ -94,13 +99,13 @@ public class Event {
 
 	
 
-	public List<Member> getListOfUsers() {
+	/*public List<Member> getListOfUsers() {
 		return listOfUsers;
 	}
 
 	public void setListOfUsers(List<Member> listOfUsers) {
 		this.listOfUsers = listOfUsers;
-	}
+	}*/
 
 	public int getEventId() {
 		return eventId;
@@ -189,13 +194,14 @@ public class Event {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
-	public List<EventMember> getEventMember() {
-		return eventMember;
+
+
+	@Override
+	public String toString() {
+		return "Event [title=" + title + "]";
 	}
 
-	public void setEventMember(List<EventMember> eventMember) {
-		this.eventMember = eventMember;
-	}
+	
+	
 
 }

@@ -22,9 +22,6 @@ public class Comment {
 	@JoinColumn(name="event_id")
 	private Event event;
 	
-	@ManyToOne(targetEntity = User.class)
-	@JoinColumn(name="user_id")
-	private User user;
 	
 	public Comment() {
 	}

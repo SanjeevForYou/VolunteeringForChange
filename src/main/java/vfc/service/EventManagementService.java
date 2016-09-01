@@ -11,12 +11,8 @@ public interface EventManagementService {
 	
 	public void saveEvent(Event event);
 	public List<Event> getAllEvents();
-	public void deleteEvent(long eventId);
-	public Event findEventById(long eventId);
+	public void deleteEvent(int eventId);
+	public Event findEventById(int eventId);
 	public void updateEvent(Event event);
-	
-	
-	
-	
 
 }
