@@ -52,6 +52,21 @@ public class EventManagementServiceImpl implements EventManagementService {
 		
 	}
 	
+	//To get event List by Category Id Ef
+	@Override
+	public List<Event> getEventByCategoryId(int categoryId){
+//		
+		/*List<Event> listEvent=eventManagementRepository.getEventsByCategory(categoryId);
+		
+		for(Event event: listEvent){
+			System.out.println(event.getTitle());
+		}*/
+		
+		System.out.println("event service layer");
+		return eventManagementRepository.getEventsByCategory(categoryId);
+		
+	}
+	
 
 
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import vfc.domain.Event;
 import vfc.repository.EventManagementRepository;
@@ -16,7 +18,7 @@ import vfc.service.CategoryManagementService;
 import vfc.service.EventManagementService;
 
 @Controller
-@RequestMapping("/admin/event")
+@RequestMapping("/event")
 public class EventController {
 	
 	@Autowired
@@ -68,5 +70,26 @@ public class EventController {
 		model.addAttribute("event",eventManagementService.findEventById(id) );
 		return "addEvents";
 	}
+	
+	//Controller for displaying Events according to category Ef.
+	
+		@RequestMapping(value="/retrieveEventByCategory", method=RequestMethod.POST)
+		public @ResponseBody List<Event> getEventList(@RequestParam("id") int categoryid){
+			System.out.println("I am here in Event Controller");
+			List<Event> listOfEvents=eventManagementService.getEventByCategoryId(categoryid);
+			for(Event l : listOfEvents){
+				System.out.println(l);
+			}
+			return listOfEvents;	
+		}
+		
+	/*	@RequestMapping(value="/retrieveEventByCategory", method=RequestMethod.POST)
+		public @ResponseBody String getEventList(){
+			System.out.println("I am in an Event");
+			
+			String a="I am String";
+			return a;	
+		}*/
+
 
 }
