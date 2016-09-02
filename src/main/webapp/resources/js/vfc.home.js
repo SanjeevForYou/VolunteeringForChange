@@ -52,18 +52,18 @@
                    vfc.config.url = contextRoot + vfc.config.method;
                    vfc.config.data = {};
                    vfc.config.ajaxCallMode = 2;
+                   vfc.config.type= 'GET';
                    vfc.ajaxCall();
             },
 
            HandleInterst : function(data)
            {
-        	   if(data==null){
+        	   if(data.member_status === "NOT_LOGGED_IN"){
         		   window.location= contextRoot+"/login";
         	   }
         	   else{
         		   $("#" + vfc.config.Busy).removeClass("btn-primary");
         		   $("#" + vfc.config.Busy).addClass("btn-success");
-        		   alert("changed");
         	   }
            },
             ajaxSuccess: function (data) {
@@ -74,7 +74,6 @@
                         vfc.BindvfcList(data);
                         break;
                     case 2:
-                      //alert("posted succcesfully");
                       vfc.HandleInterst(data);
                         break;
                 }
@@ -99,6 +98,7 @@
                         break;
                     case 2:
                     	// window.location= contextRoot+"/login";
+                    	alert("Something went wrong!!");
                         break;
                 }
             }

@@ -20,7 +20,16 @@ public class EventMember {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int approval;
+	private String member_status;
 	
+	public String getMember_status() {
+		return member_status;
+	}
+
+	public void setMember_status(String member_status) {
+		this.member_status = member_status;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="event_id")
 	private Event event;

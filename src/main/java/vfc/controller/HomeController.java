@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import vfc.domain.Event;
@@ -65,7 +66,7 @@ public class HomeController {
 		return "testInterest";
 	}
 	
-	@RequestMapping("/rest/interest/{eventid}")
+/*	@RequestMapping(value = "/rest/interest/{eventid}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseEntity<String> restInterest(@PathVariable("eventid") int eventid){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String name = auth.getName();
@@ -82,5 +83,27 @@ public class HomeController {
 		
         eventMemberService.saveEventMember(eventMember);
         return new ResponseEntity<String>(HttpStatus.OK);
+	}*/
+	
+	@RequestMapping(value = "/rest/interest/{eventid}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody EventMember restInterest(@PathVariable("eventid") int eventid){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName();
+	    
+	    EventMember eventMember = new EventMember();
+		if(name==null){
+			eventMember.setMember_status("NOT_LOGGED_IN");
+			return eventMember;
+		}
+		
+		Event event = eventService.findEventById(eventid);
+		eventMember.setEvent(event);
+		
+		Member member = memberService.findMemberByUsername(name);
+		eventMember.setMember(member);
+	     
+        eventMemberService.saveEventMember(eventMember);
+    	eventMember.setMember_status("LOGGED_IN");
+        return eventMember;
 	}
 }
