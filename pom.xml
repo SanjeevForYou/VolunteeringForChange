@@ -36,7 +36,16 @@
   		<artifactId>spring-security-web</artifactId>
   		<version>3.2.5.RELEASE</version>
   	</dependency>
- 
+ <dependency>
+	    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+	    <artifactId>jackson-jaxrs-base</artifactId>
+	    <version>2.4.4</version>
+	</dependency>
+  	<dependency>
+  		<groupId>org.codehaus.jackson</groupId>
+  		<artifactId>jackson-mapper-asl</artifactId>
+  		<version>1.9.13</version>
+  	</dependency>
   	<dependency>
   		<groupId>log4j</groupId>
   		<artifactId>log4j</artifactId>
@@ -47,13 +56,12 @@
 		<artifactId>slf4j-log4j12</artifactId>
   		<version>1.7.1</version>		
 	</dependency>
-   	
-  	
-  	<dependency>
+   		<dependency>
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-validator</artifactId>
   		<version>4.3.1.Final</version>
   	</dependency>
+ 
   	<dependency>
   		<groupId>org.springframework.data</groupId>
   		<artifactId>spring-data-jpa</artifactId>
@@ -90,6 +98,20 @@
   		<artifactId>mysql-connector-java</artifactId>
   		<version>5.1.34</version>
   	</dependency>
+  	
+  	 <!-- Tiles added Ef -->
+       <dependency>
+    <groupId>org.apache.tiles</groupId>
+    <artifactId>tiles-extras</artifactId>
+    <version>3.0.3</version>
+   </dependency>
+    <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.5</version>
+   </dependency>
+
+ <!-- Tiles End -->
   	
   </dependencies>
   <properties>

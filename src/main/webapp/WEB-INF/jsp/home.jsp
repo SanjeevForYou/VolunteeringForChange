@@ -1,65 +1,60 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+ <script>
+	 $(function () {
+	     $(this).vfc_home({
+	         UserModuleID: '1',
+	         rowTotal: '1',
+	         PageLimit:'10',
+	         CategoryID: '2'
+	     });      
+	 });
+ </script>
+ 
+	<div class="a"></div>
+	<div class="main_page">
+		<div class="search_page"></div>
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
- 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<title>Welcome</title>
-</head>
-<body>
-   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><img src="<c:url value='/resources/app-images/vfc-logo.jpg'></c:url>" alt="image" /> Volunteering For Change </a>
-    </div>
+		<div class="event_page">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</body>
-</html>
+			<c:forEach var="item" varStatus="status" items="${listOfEvents}">
+				<div class="event_box">
+					<strong>${item.title}</strong><br> ${item.shortDescription} 
+
+
+					<div class="partition_date_venue">
+						<div class="date_event">
+							<div class="dv_logo">
+								<img src="resources/app-images/date.png" alt="image"
+									style="height: 40px; width: 40px;" /><strong>Date:</strong>
+							</div>
+							<div class="dv_detail">
+								Start Date: ${item.startDate}<br>Deadline: ${item.endDate}
+							</div>
+
+						</div>
+						<div class="venue_event">
+							<div class="dv_logo">
+								<img src="resources/app-images/location.png" alt="image"
+								style="height: 40px; width: 40px;" /><strong>Venue:</strong>
+							</div>
+							<div class="dv_detail">
+								${item.location}
+							</div>
+						</div>
+						<div class="clear"></div>
+						<c:if test="${item.mark == 0}">
+						 <span class="btn btn-primary btn-mini interested" id="${item.eventId}" data-eventid="${item.eventId}">Event ${item.eventId} Instrested</span>
+						</c:if>
+						<c:if test="${item.mark == 1}">
+						 <span class="btn btn-success btn-mini interested" id="${item.eventId}" data-eventid="${item.eventId}">Event ${item.eventId} Instrested</span>
+						</c:if>
+						 
+					</div>
+				</div>
+				<br>
+				<br>
+			</c:forEach>
+		</div>
+
+		<div class="clear"></div>
+	</div>

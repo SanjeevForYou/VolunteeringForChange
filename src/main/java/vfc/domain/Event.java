@@ -1,12 +1,14 @@
 package vfc.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Event {
@@ -26,37 +34,91 @@ public class Event {
 	private String shortDescription;
 	private String description;
 	private byte[] image;
+	@Temporal(TemporalType.DATE)
 	private Date uploadDate;
+	@Temporal(TemporalType.DATE)
 	private Date updateDate;
+	public int getMark() {
+		return mark;
+	}
+
+
+	public void setMark(int mark) {
+		this.mark = mark;
+	}
+
+
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+	@Temporal(TemporalType.DATE)
+	private Date endDate;
 	private int noOfSeats;
 	private String location;
 	private int ageCriteria;
-
-	@ManyToOne(targetEntity = Category.class)
+	private int status;
+	private int mark;
+	@ManyToOne
 	@JoinColumn(name="category_id")
-	List<Category> listOfCategory = new ArrayList<>();
+	private Category category;
 	
-	
-
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(name = "interest", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "user_id") })
-	List<User> listOfUsers = new ArrayList<>();
+	List<Member> listOfUsers = new ArrayList<>();*/
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "event", fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<EventMember> listOfEventMembers = new ArrayList<>();
 
+	
 	public Event() {
 	}
 
 	
+	public List<EventMember> getListOfEventMembers() {
+		return listOfEventMembers;
+	}
 
-	public List<User> getListOfUsers() {
+
+	public void setListOfEventMembers(List<EventMember> listOfEventMembers) {
+		this.listOfEventMembers = listOfEventMembers;
+	}
+
+
+	public Date getStartDate() {
+		return startDate;
+	}
+	
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	
+
+	/*public List<Member> getListOfUsers() {
 		return listOfUsers;
 	}
 
-
-	public void setListOfUsers(List<User> listOfUsers) {
+	public void setListOfUsers(List<Member> listOfUsers) {
 		this.listOfUsers = listOfUsers;
-	}
-
+	}*/
 
 	public int getEventId() {
 		return eventId;
@@ -65,7 +127,6 @@ public class Event {
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
-
 
 	public String getTitle() {
 		return title;
@@ -138,5 +199,22 @@ public class Event {
 	public void setAgeCriteria(int ageCriteria) {
 		this.ageCriteria = ageCriteria;
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Event [title=" + title + "]";
+	}
+
+	
+	
 
 }
