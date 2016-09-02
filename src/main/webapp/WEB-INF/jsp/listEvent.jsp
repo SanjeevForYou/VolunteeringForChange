@@ -41,7 +41,7 @@
                
 
                 <td>
-                <a href="<spring:url value="/admin/memberEvent/approve/${event.eventId}" />"
+                <a href="<spring:url value="/admin/memberEvent/members/${event.eventId}" />"
 									class="btn btn-success"> <span
 									class="glyphicon glyphicon-edit" /></span>Members</a>
 									
