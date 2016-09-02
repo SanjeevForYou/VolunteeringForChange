@@ -13,12 +13,12 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>List of Category</title>
+<title>List of Events</title>
 </head>
 <body>
 <section class="container">
 		<div class="row">
-		 <h3>List of Categories </h3>
+		 <h3>List of Events </h3>
         
         <table class="table">
             <th>ID</th>
@@ -41,6 +41,11 @@
                
 
                 <td>
+                <a href="<spring:url value="/admin/memberEvent/members/${event.eventId}" />"
+									class="btn btn-success"> <span
+									class="glyphicon glyphicon-edit" /></span>Members</a>
+									
+									
                 <a href="<spring:url value="/admin/event/getdetails/${event.eventId}" />"
 									class="btn btn-success"> <span
 									class="glyphicon glyphicon-edit" /></span>Details</a>

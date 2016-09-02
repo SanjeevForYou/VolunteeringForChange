@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Event {
 	@Id
@@ -64,7 +66,8 @@ public class Event {
 			@JoinColumn(name = "user_id") })
 	List<Member> listOfUsers = new ArrayList<>();*/
 	
-	@OneToMany(mappedBy = "event", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "event", fetch= FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<EventMember> listOfEventMembers = new ArrayList<>();
 
 	

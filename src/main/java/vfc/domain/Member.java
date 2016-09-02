@@ -142,6 +142,10 @@ public class Member {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+	
+	public String getFullName(){
+		return getFirstName()+" "+getLastName();
+	}
 
 	@Override
 	public String toString() {
