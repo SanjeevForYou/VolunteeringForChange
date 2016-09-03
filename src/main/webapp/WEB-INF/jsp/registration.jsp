@@ -66,7 +66,7 @@ $(function(){
 					<div class="form-group">
 						<label class="control-label" for="name">Password</label>
 
-						<form:input path="credentials.password" class="form-control"
+						<form:password path="credentials.password" class="form-control"
 							placeholder="Password" />
 						<form:errors path="credentials.password" cssStyle="color : red;" />
 
@@ -74,7 +74,7 @@ $(function(){
 					<div class="form-group">
 						<label class="control-label" for="name">Re type password </label>
 
-						<form:input path="credentials.verifyPassword" class="form-control"
+						<form:password path="credentials.verifyPassword" class="form-control"
 							placeholder="Password" />
 						<form:errors path="credentials.verifyPassword"
 							cssStyle="color : red;" />

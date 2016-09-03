@@ -33,12 +33,12 @@ public class Member {
 	private int id;
 
 	@NotEmpty
-	@Size(min = 4, max = 20)
+	@Size(min = 4, max = 20, message="{register.member.name.size}")
 	@Column(name = "FIRSTNAME")
 	private String firstName;
 
 	@NotEmpty
-	@Size(min = 4, max = 20)
+	@Size(min = 4, max = 20,message="{register.member.name.size}")
 	@Column(name = "LASTNAME")
 	private String lastName;
 

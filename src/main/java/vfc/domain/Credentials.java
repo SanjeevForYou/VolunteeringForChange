@@ -17,7 +17,7 @@ import vfc.validator.Username;
 @Entity(name = "USERS")
 public class Credentials {
 
-	@NotEmpty
+	@NotEmpty(message = "{credential.username}")
 	@Username
 	@Id
 	@Column(name = "USERNAME", nullable = false, unique = true)
