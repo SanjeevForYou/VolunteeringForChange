@@ -90,8 +90,10 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String name = auth.getName();
 	    
+	    System.out.print(name);
+	    
 	    EventMember eventMember = new EventMember();
-		if(name==null){
+		if(name==null || name.isEmpty() || name.equals("anonymousUser")){
 			eventMember.setMember_status("NOT_LOGGED_IN");
 			return eventMember;
 		}

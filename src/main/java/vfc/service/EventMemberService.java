@@ -6,4 +6,6 @@ public interface EventMemberService {
 	public EventMember saveEventMember(EventMember eventMember);
 	
 	public boolean isUserEventExist(int eventid, int userid);
+	
+	public EventMember getEventMemberByEventUserID(int eventid, int userid);
 }

@@ -14,8 +14,5 @@ public interface EventManagementService {
 	public void deleteEvent(int eventId);
 	public Event findEventById(int eventId);
 	public void updateEvent(Event event);
-	
-	//To get Event List by Category Id list
-	public List<Event> getEventByCategoryId(int categoryid);
 
 }

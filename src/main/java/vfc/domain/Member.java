@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -22,6 +21,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "MEMBER")
 public class Member {
@@ -53,12 +54,25 @@ public class Member {
 	private String title;
 	@Column(name = "MEMBERNUMBER")
 	private int memberNumber;
+	
+	private int mark;
+
+	public int getMark() {
+		return mark;
+	}
+
+
+
+	public void setMark(int mark) {
+		this.mark = mark;
+	}
 
 	@Valid
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "USERNAME")
 	private Credentials credentials;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "member")
 	private List<EventMember> listOfEventMembers = new ArrayList<>();
 

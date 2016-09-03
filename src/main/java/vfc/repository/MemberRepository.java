@@ -21,11 +21,8 @@ import vfc.domain.Member;
 		
 		
 		@Query("select m from MEMBER m join m.listOfEventMembers e where e.event.eventId =:eventId")
-		//@Query("select e.listOfUsers from Event e where e.eventId=:eventId")
 		public List<Member> findMembersByEventId(@Param("eventId") int eventId);
 		
-//		@Query("Select E.listOfUsers from Event E  ")
-//		public List<Member>getMemberEnrolledInEvent(@Param("eventId") long id);
 
  	}
 

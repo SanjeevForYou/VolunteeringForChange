@@ -14,4 +14,7 @@ public interface EventMemberRepository extends JpaRepository<EventMember, Intege
 
 	@Query("select em from EventMember em where em.event.eventId=:eventid and em.member.id=:userid")
 	public List<EventMember> isUserEventExist(@Param("eventid") int eventid, @Param("userid") int userid);
+	
+	@Query("select em from EventMember em where em.event.eventId=:eventid and em.member.id=:userid")
+	public EventMember getEventMemberByEventUserID(@Param("eventid") int eventid, @Param("userid") int userid);
 }

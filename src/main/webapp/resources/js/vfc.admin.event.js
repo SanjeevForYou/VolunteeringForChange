@@ -5,14 +5,12 @@
     var currentPage;
     var container;
     var contextRoot = "/" + window.location.pathname.split('/')[1];
+    var eventid;
+    var memberid;
+    var approveid;
     $.Showvfc = function (p) {
         p = $.extend
-                ({
-                    rowTotal: '',
-                    UserModuleID: '',
-                    PageLimit: '',
-                    CategoryID: ''
-                }, p);
+                ({}, p);
 
         var vfc = {
             config: {
@@ -31,13 +29,16 @@
             },
 
             init: function (config) {
-                
-                $(".interested").on('click', function () {
+                $(".user_approval").on('change', function () {
                 	 	var txt;
-                	    var r = confirm("Do you want to confirm Event!");
+                	    var r = confirm("Do you want to change approval?");
                 	    if (r == true) {
-                	    	 vfc.config.Busy = $(this).attr("data-eventid");
-                             vfc.MarkMemberInterest(vfc.config.Busy);    
+                	    	eventid = $(this).attr("data-eventid");
+                	    	memberid = $(this).attr("data-userid");
+                	    	approveid = $(this).val();
+         
+                	       vfc.config.data = JSON.stringify({"eventid" : eventid , "memberid": memberid,"approval" : approveid});
+                             vfc.MarkMemberApprove();    
                 	    }
 
                 });
@@ -45,26 +46,15 @@
                 
             },
      
-            MarkMemberInterest: function(dta)
+            MarkMemberApprove: function(dta)
             {
-            	   vfc.config.method = "/rest/interest/" + dta;
+            	   vfc.config.method = "/admin/memberEvent/approve"
                    vfc.config.url = contextRoot + vfc.config.method;
-                   vfc.config.data = {};
                    vfc.config.ajaxCallMode = 2;
-                   vfc.config.type= 'GET';
+                   vfc.config.type= 'PUT';
                    vfc.ajaxCall();
             },
-
-           HandleInterst : function(data)
-           {
-        	   if(data.member_status === "NOT_LOGGED_IN"){
-        		   window.location= contextRoot+"/login";
-        	   }
-        	   else{
-        		   $("#" + vfc.config.Busy).removeClass("btn-primary");
-        		   $("#" + vfc.config.Busy).addClass("btn-success");
-        	   }
-           },
+            
             ajaxSuccess: function (data) {
                 switch (vfc.config.ajaxCallMode) {
                     case 0:
@@ -73,10 +63,11 @@
                         vfc.BindvfcList(data);
                         break;
                     case 2:
-                      vfc.HandleInterst(data);
+                      
                         break;
                 }
             },
+            
             ajaxCall: function () {
                 $.ajax({
                     type: vfc.config.type,
@@ -96,7 +87,6 @@
                     case 0:
                         break;
                     case 2:
-                    	// window.location= contextRoot+"/login";
                     	alert("Something went wrong!!");
                         break;
                 }
@@ -106,7 +96,7 @@
         vfc.init();
     };
 
-    $.fn.vfc_home = function (p) {
+    $.fn.vfc_admin_event = function (p) {
         $.Showvfc(p);
     };
 })(jQuery);

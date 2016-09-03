@@ -21,7 +21,19 @@ $(function(){
 </script>
 </head>
 <body>
+<div id="maincontainer">
+<div id="header">
+<h2>VFC Admin</h2>
+</div>
+<div id="nav">
+<a href="<spring:url value="/admin/event/all"></spring:url>">Events</a>
+<a href='<spring:url value="/admin/category/addCategory"></spring:url>'>Add Event Category</a>
+<a href="<spring:url value="/admin/event/addEvent"></spring:url>">Add Event</a>
 
+<a href="<spring:url value="/user/list"></spring:url>">Manage Users</a>
+
+</div>
+</div>
 	<div class="main_container">
 		<div class="contain">
 			<h2>User Manage</h2>
