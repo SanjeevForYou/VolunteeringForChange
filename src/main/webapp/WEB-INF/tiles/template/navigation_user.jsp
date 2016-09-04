@@ -9,7 +9,6 @@
 						<li><a href="#">Page 1-2</a></li>
 						<li><a href="#">Page 1-3</a></li>
 					</ul></li>
-				<li><a href="#">Page 2</a></li>
 			</ul>
 		</div>
 	</nav>

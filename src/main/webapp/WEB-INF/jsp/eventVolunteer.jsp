@@ -22,10 +22,10 @@
 	src='<spring:url value="/resources/js/vfc.admin.event.js"></spring:url>'></script>
 
 <script>
-  $(function () {
-	     $(this).vfc_admin_event({});      
-	 });
-  </script>
+	$(function() {
+		$(this).vfc_admin_event({});
+	});
+</script>
 <title>List of User</title>
 </head>
 <body>
@@ -65,10 +65,13 @@
 			</tr>
 		</table>
 
-		<a class="btn btn-success btn-large"
-			href="<spring:url value="/admin/event/addEvent"/>"
-			class="btn btn-primary"> Add New</a>
 
+		<div class="form-group">
+			<a class="btn btn-success btn-large"
+				href="<spring:url value="/admin/event/addEvent"/>"
+				class="btn btn-primary"> Add New</a> <a
+				href="<spring:url value="/" />" class="btn btn-success">Go Home</a>
+		</div>
 
 
 	</div>
