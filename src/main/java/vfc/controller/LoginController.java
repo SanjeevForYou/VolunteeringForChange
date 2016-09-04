@@ -15,7 +15,7 @@ public class LoginController {
 	
 	@RequestMapping({"/logout"})
 	public String logout(){
-		return "redirect:/welcome";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping({"/welcome"})

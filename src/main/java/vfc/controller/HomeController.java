@@ -2,6 +2,8 @@ package vfc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +36,12 @@ public class HomeController {
 	MemberService memberService;
 	
 	@RequestMapping({"/", "/home"})
-	public String home(Model model){
+	public String home(Model model, HttpServletRequest request){
+		
+		if (request.isUserInRole("ROLE_ADMIN")) {
+            return "admin/adminPage";
+        }
+		
 		List<Event> events = eventService.getAllEvents();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String name = auth.getName(); //get logged in username

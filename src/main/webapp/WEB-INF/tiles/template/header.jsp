@@ -10,7 +10,11 @@
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src='<spring:url value="resources/js/vfc.home.js"></spring:url>'></script>
+<script src='<spring:url value="/resources/js/vfc.home.js"></spring:url>'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  </head>
 <body>
 <div id="head">
@@ -34,8 +38,6 @@
 				</security:authorize>
 		</div>
 	</div>
-	<div id="navigation_part">
-		
-	</div>
+	
 	 
 </div>

@@ -23,6 +23,6 @@
 		User Name : ${profile.credentials.username}
 		</c:if>
 		
-		<a class="btn btn-primary btn-mini" href='<spring:url value="/welcome"></spring:url>'>Go Back</a>
+		<a class="btn btn-primary btn-mini" href='<spring:url value="/"></spring:url>'>Go Back</a>
 	</div>
 </body>
